@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Vulnerable Website - Demo</title>
+</head>
+<body>
+  <h1>Vulnerable Demo Site</h1>
+  <form id="loginForm" method="post" action="/login">
+    <label>Username: <input name="username" /></label><br/>
+    <label>Password: <input name="password" type="password"/></label><br/>
+    <button type="submit">Login</button>
+  </form>
+
+  <h2>Send command (simulate post-compromise)</h2>
+  <form id="cmdForm" method="post" action="/submit_cmd">
+    <label>Session ID: <input name="session_id" value="web-session-1"/></label><br/>
+    <label>Command: <input name="command"/></label><br/>
+    <button type="submit">Send</button>
+  </form>
+
+  <p>This demo site forwards login attempts and command submissions to the honeypot ingest API in real-time.</p>
+</body>
+</html>

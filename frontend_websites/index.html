@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Attacker Playground (Frontend)</title>
+  <style>body{font-family:Arial;margin:20px}</style>
+</head>
+<body>
+  <h1>Attacker Playground</h1>
+  <p>This simple frontend targets the demo backend at <code>http://127.0.0.1:9000</code>.</p>
+
+  <h2>Login (will be forwarded to honeypot)</h2>
+  <form id="login" onsubmit="postForm(event, '/login')">
+    <input name="username" placeholder="username" required />
+    <input name="password" placeholder="password" required />
+    <button>Send</button>
+  </form>
+
+  <h2>Run command (post-compromise)</h2>
+  <form id="cmd" onsubmit="postForm(event, '/submit_cmd')">
+    <input name="session_id" placeholder="session id" value="web-session-1" />
+    <input name="command" placeholder="command to run" required />
+    <button>Send</button>
+  </form>
+
+  <script>
+  async function postForm(e, path) {
+    e.preventDefault();
+    const form = e.target;
+    const data = {};
+    new FormData(form).forEach((v,k)=>data[k]=v);
+    try{
+      const res = await fetch('http://127.0.0.1:9000'+path, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data) });
+      const j = await res.json();
+      alert('Response: '+JSON.stringify(j));
+    }catch(err){
+      alert('Request failed: '+err);
+    }
+  }
+  </script>
+</body>
+</html>
