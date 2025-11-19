@@ -128,11 +128,6 @@ Network-Securitty-Project/
 ├── frontend_websites/                # Attacker playground (frontend)
 │   └── index.html                    # Static HTML with attack forms
 │
-├── start_enhanced_honeypot.ps1      # Launch honeypot backend
-├── start_dashboard.ps1              # Launch dashboard
-├── start_websites.ps1               # Launch demo websites
-├── launch_system.ps1                # Launch entire system
-│
 ├── honeypot_events.db               # SQLite database (auto-created)
 ├── requirements.txt                 # Python dependencies
 └── README.md                        # This file
@@ -181,32 +176,26 @@ pip install -r requirements.txt
 
 ## ⚡ Quick Start
 
-### Option 1: Launch Everything at Once
+### Launch Components Individually
 
+**Terminal 1 - Start Honeypot Backend:**
 ```powershell
-.\launch_system.ps1
-```
-
-This starts:
-- Honeypot backend (port 8000)
-- Dashboard (port 5000)
-- Demo websites (ports 7000 & 9000)
-
-### Option 2: Launch Components Individually
-
-**Terminal 1 - Start Honeypot:**
-```powershell
-.\start_enhanced_honeypot.ps1
+python -m uvicorn backend.app.main_enhanced:app --host 0.0.0.0 --port 8000
 ```
 
 **Terminal 2 - Start Dashboard:**
 ```powershell
-.\start_dashboard.ps1
+python dashboard/app.py
 ```
 
-**Terminal 3 - Start Demo Websites:**
+**Terminal 3 - Start Backend Website:**
 ```powershell
-.\start_websites.ps1
+python backend_websites/app.py
+```
+
+**Terminal 4 - Start Frontend Website:**
+```powershell
+python -m http.server 7000 --directory frontend_websites
 ```
 
 ### Verify System is Running
