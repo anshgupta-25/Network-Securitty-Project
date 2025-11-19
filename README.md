@@ -110,10 +110,12 @@ Network-Securitty-Project/
 ├── backend/                          # Main honeypot backend
 │   └── app/
 │       ├── main_enhanced.py          # FastAPI app with honeypot logic
+│       ├── main.py                   # Basic honeypot version
 │       ├── honeypot_enhanced.py      # SSH/RDP protocol emulation
-│       ├── db_enhanced.py            # Database operations (SQLite)
-│       ├── schemas.py                # Pydantic data models
-│       └── analyzer.py               # Attack pattern analysis
+│       ├── honeypot.py               # Basic honeypot handler
+│       ├── db_enhanced.py            # Enhanced database operations
+│       ├── db.py                     # Basic database operations
+│       └── schemas.py                # Pydantic data models
 │
 ├── dashboard/                        # Web dashboard
 │   ├── app.py                        # Flask application
@@ -140,8 +142,8 @@ Network-Securitty-Project/
 ### Prerequisites
 
 - **Python 3.9+** (tested on Python 3.13)
-- **Windows PowerShell** (for launcher scripts)
 - **Git** (for cloning repository)
+- **Terminal/Command Prompt** (Windows, Linux, or macOS)
 
 ### Step 1: Clone Repository
 
